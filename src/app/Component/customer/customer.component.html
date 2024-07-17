@@ -1,0 +1,26 @@
+
+<h1 class="text-center text-warning">Customer Table</h1>
+
+
+<div class="text-center"><input type="text" class="form-contol w-50 mx-auto form-control-sm my-3" placeholder="Search By Customer Name" [(ngModel)]="searchByName"></div>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>Customer Id</th>
+            <th>Customer Name</th>
+            <th>Amount</th>
+            <th>Graph</th>
+        </tr>
+    </thead>
+   <tbody>
+    <ng-container *ngFor="let customer of Customer | searchByName:searchByName">
+        <tr>
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{calculateTotalAmount(customer.id)}}</td>
+          <td><button (click)="goToTransactions(customer.id)" class="bg-success btn text-white">Show Graph</button></td>
+        </tr>
+      </ng-container>
+   </tbody>
+</table>
